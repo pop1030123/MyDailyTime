@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <include
+        android:id="@+id/hoursTensView"
+        layout="@layout/timely_digital_clock_item" />
+
+    <include
+        android:id="@+id/hoursUnitsView"
+        layout="@layout/timely_digital_clock_item" />
+
+    <include
+        android:id="@+id/digitalClockColon"
+        layout="@layout/timely_digital_clock_colon" />
+
+    <include
+        android:id="@+id/minutesTensView"
+        layout="@layout/timely_digital_clock_item" />
+
+    <include
+        android:id="@+id/minutesUnitsView"
+        layout="@layout/timely_digital_clock_item" />
+
+    <!--<include-->
+        <!--android:id="@+id/secondDigitalClockColon"-->
+        <!--layout="@layout/timely_digital_clock_colon" />-->
+
+    <include
+        android:id="@+id/secondsTensView"
+        layout="@layout/timely_digital_clock_item" />
+
+    <include
+        android:id="@+id/secondsUnitsView"
+        layout="@layout/timely_digital_clock_item" />
+
+</merge>

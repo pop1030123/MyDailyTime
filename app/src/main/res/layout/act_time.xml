@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:orientation="vertical">
+
+
+    <com.carlosdelachica.timelydigitalclock.TimelyDigitalClockView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:dg_secondsTextSize="40sp"
+        app:dg_secondsTextStrokeWidth="1dp"
+        app:dg_textColor="#000"
+        app:dg_textSize="70sp"
+        app:dg_textStrokeWidth="3dp"
+        />
+
+
+    <TextView
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_item"
+        android:padding="@dimen/button_padding"
+        android:text="start"/>
+
+
+    <TextView
+        android:id="@+id/stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_item"
+        android:padding="@dimen/button_padding"
+        android:text="stop"/>
+
+
+    <TextView
+        android:id="@+id/resume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_item"
+        android:padding="@dimen/button_padding"
+        android:text="resume"/>
+
+</LinearLayout>

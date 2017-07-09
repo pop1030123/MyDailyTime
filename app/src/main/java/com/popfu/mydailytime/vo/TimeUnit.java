@@ -3,12 +3,14 @@ package com.popfu.mydailytime.vo;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.io.Serializable;
+
 /**
  * Created by pengfu on 08/07/2017.
  */
 
 @DatabaseTable(tableName = "time_unit")
-public class TimeUnit {
+public class TimeUnit implements Serializable {
 
 
     @DatabaseField(generatedId = true)
@@ -26,6 +28,13 @@ public class TimeUnit {
         this.name = name ;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

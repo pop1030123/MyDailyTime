@@ -31,10 +31,10 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
 
-
     annotationProcessor "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
 
-
     compile 'de.greenrobot:eventbus:2.2.1'
+
+    compile project(':digital-clock')
 }

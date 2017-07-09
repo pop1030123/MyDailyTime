@@ -16,9 +16,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.popfu.mydailytime.R;
+import com.popfu.mydailytime.event.EventAddUnit;
+import com.popfu.mydailytime.event.EventUpdateUnit;
 import com.popfu.mydailytime.presenter.MainPresenter;
 
-public class MainActivity extends AppCompatActivity
+import static com.popfu.mydailytime.ui.TimeActivity.KEY_TIME_UNIT;
+
+public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, MainAdapter.Callback {
 
     private RecyclerView mRecyclerView ;
@@ -49,8 +53,8 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                TimeActivity_.intent(MainActivity.this)
+                        .start() ;
             }
         });
 
@@ -123,6 +127,20 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onItemClick(int position) {
-        // TODO: 09/07/2017 goto time unit
+        TimeActivity_.intent(this)
+                .extra(KEY_TIME_UNIT ,mMainAdapter.getItem(position))
+                .start() ;
+    }
+
+    @Override
+    public void onItemChanged(int position) {
+
+    }
+
+    public void onEvent(EventAddUnit eventAddUnit){
+        mMainAdapter.addItem(eventAddUnit.getUnit());
+    }
+    public void onEvent(EventUpdateUnit eventUpdateUnit){
+        mMainAdapter.updateItem(eventUpdateUnit.getUnit());
     }
 }

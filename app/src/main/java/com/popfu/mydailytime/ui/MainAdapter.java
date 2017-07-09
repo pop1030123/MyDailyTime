@@ -65,6 +65,30 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ItemHolder> {
         return mTimeUnitList.size() ;
     }
 
+    public TimeUnit getItem(int position){
+        return mTimeUnitList.get(position) ;
+    }
+
+    public void addItem(TimeUnit unit){
+        mTimeUnitList.add(getItemCount() ,unit);
+        notifyItemInserted(getItemCount() - 1);
+    }
+
+    public void updateItem(TimeUnit updateUnit){
+        TimeUnit tempUnit = null ;
+        for (TimeUnit unit : mTimeUnitList){
+            if(unit.getId() == updateUnit.getId()){
+                tempUnit = unit ;
+                break;
+            }
+        }
+        if(tempUnit != null){
+            int index = mTimeUnitList.indexOf(tempUnit) ;
+            mTimeUnitList.remove(index) ;
+            mTimeUnitList.add(index ,updateUnit);
+            notifyItemChanged(index);
+        }
+    }
 
     class ItemHolder extends RecyclerView.ViewHolder{
 
@@ -81,5 +105,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ItemHolder> {
 
     public interface Callback{
         void onItemClick(int position) ;
+        void onItemChanged(int position) ;
     }
 }

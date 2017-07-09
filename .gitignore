@@ -1,3 +1,4 @@
+digital-clock/build/
 *.iml
 .gradle
 /local.properties
