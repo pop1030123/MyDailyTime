@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public final class L {
 
-    private static final String TAG ="DailyNote" ;
+    private static final String TAG ="MyDailyTime" ;
 
     public static void d(String message){
         Log.d(TAG ,message) ;

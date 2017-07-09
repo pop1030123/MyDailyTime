@@ -1,6 +1,9 @@
 package com.popfu.mydailytime.ui;
 
 import android.content.Context;
+import android.graphics.drawable.ClipDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,6 +62,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ItemHolder> {
         holder.durationView.setText(thisUnit.getDurationString());
         // TODO: 08/07/2017
         holder.durationProgress.setProgress(50);
+//        LayerDrawable drawable = (LayerDrawable)holder.durationProgress.getProgressDrawable() ;
+//        L.d("drawable:num:"+drawable.getNumberOfLayers());
+//        ClipDrawable clipDrawable =(ClipDrawable) drawable.findDrawableByLayerId(android.R.id.progress) ;
+//        L.d("drawable:d1:"+clipDrawable.getCurrent());
+//        L.d("drawable:d:"+clipDrawable.getConstantState());
         holder.itemView.setTag(thisUnit);
     }
 

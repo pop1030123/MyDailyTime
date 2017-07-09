@@ -9,14 +9,20 @@
     <!-- progress -->
     <item android:id="@android:id/progress">
         <clip>
-            <color android:color="@color/progress_color"/>
+            <shape>
+                <corners android:radius="@dimen/progress_bar_radius" />
+                <solid android:color="@color/progress_color"/>
+            </shape>
         </clip>
     </item>
     <!-- second progress -->
 
     <item android:id="@android:id/secondaryProgress">
         <clip>
-            <color android:color="@color/progress_color"/>
+            <shape>
+                <corners android:radius="@dimen/progress_bar_radius" />
+                <solid android:color="@color/progress_color"/>
+            </shape>
         </clip>
     </item>
 

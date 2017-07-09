@@ -18,7 +18,7 @@
     <color name="btn_bg_light_normal">#fff</color>
     <color name="btn_bg_light_press">#8fff</color>
 
-    <color name="progress_color">#f00</color>
+    <color name="progress_color">#08f</color>
 
     <color name="title_bar_color">#08f</color>
     <color name="c_white">#fff</color>
