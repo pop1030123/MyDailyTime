@@ -1,8 +1,10 @@
-package com.popfu.mydailytime;
+package com.popfu.mydailytime.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,8 +15,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.popfu.mydailytime.R;
+import com.popfu.mydailytime.presenter.MainPresenter;
+
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, MainAdapter.Callback {
+
+    private RecyclerView mRecyclerView ;
+
+    private MainAdapter mMainAdapter ;
+
+    private MainPresenter mMainPresenter ;
+
+    LinearLayoutManager mLayoutManager ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +35,15 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        mLayoutManager = new LinearLayoutManager(this) ;
+        mMainPresenter = new MainPresenter() ;
+        mMainAdapter = new MainAdapter(this) ;
+        mMainAdapter.setCallback(this);
+        mMainAdapter.setTimeUnitList(mMainPresenter.getAllTimeUnits());
+        mRecyclerView = (RecyclerView)findViewById(R.id.recycler_view) ;
+        mRecyclerView.setAdapter(mMainAdapter);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -97,5 +119,10 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        // TODO: 09/07/2017 goto time unit
     }
 }
