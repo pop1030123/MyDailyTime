@@ -4,5 +4,5 @@
 
     <solid android:color="#0000" />
     <corners android:radius="5dp" />
-    <stroke android:color="#000" android:width="2px"/>
+    <stroke android:color="@color/btn_bg_press" android:width="2px"/>
 </shape>

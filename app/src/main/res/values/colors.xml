@@ -3,4 +3,14 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+
+    <drawable name="transparent">#0000</drawable>
+
+    <color name="c_text_normal">#000</color>
+    <color name="c_text_press">#aaa</color>
+
+    <color name="btn_bg_normal">#000</color>
+    <color name="btn_bg_press">#aaa</color>
+
 </resources>

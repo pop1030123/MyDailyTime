@@ -120,20 +120,25 @@ public class TimeActivity extends Activity implements View.OnClickListener {
                     // to create a name
                     final Dialog dlg = new Dialog(this) ;
                     dlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                    Window window = dlg.getWindow();
-                    window.getDecorView().setPadding(0, 0, 0, 0);
-//                    WindowManager.LayoutParams lp = window.getAttributes();
-//                    lp.width  = (int)(DeviceUtil.getScreenWidth()/2f);
-//                    lp.height = DeviceUtil.getScreenHeight()/2;
-//                    window.setAttributes(lp);
-                    dlg.setContentView(R.layout.dlg_input_name);
+                    View contentView = getLayoutInflater().inflate(R.layout.dlg_input_name ,null ,false) ;
+                    final EditText inputEditText = (EditText) contentView.findViewById(R.id.edit_name) ;
+                    TextView titleView = (TextView) contentView.findViewById(R.id.title_view) ;
+                    TextView ConfirmView = (TextView) contentView.findViewById(R.id.confirm) ;
+                    int dlg_width = (int) (DeviceUtil.getScreenWidth()/1.5f);
+                    int dlg_height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+                    WindowManager.LayoutParams lp = new WindowManager.LayoutParams() ;
+                    lp.width = dlg_width;
+                    lp.height = dlg_height ;
+                    contentView.setPadding(dlg_width/6 ,DeviceUtil.dip2px(20) ,dlg_width/6 ,DeviceUtil.dip2px(20));
+                    dlg.getWindow().setBackgroundDrawableResource(R.drawable.transparent);
+                    dlg.setContentView(contentView ,lp);
                     dlg.setCanceledOnTouchOutside(false);
                     dlg.setCancelable(false);
-                    final EditText input = (EditText) dlg.findViewById(R.id.edit_name) ;
                     dlg.findViewById(R.id.confirm).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            String input_name = input.getText().toString() ;
+                            String input_name = inputEditText.getText().toString() ;
                             if(TextUtils.isEmpty(input_name)){
                                 ToastUtil.show("请输入标题");
                             }else{
@@ -149,7 +154,7 @@ public class TimeActivity extends Activity implements View.OnClickListener {
                         @Override
                         public void onShow(DialogInterface dialog) {
                             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                            imm.showSoftInput(input, InputMethodManager.SHOW_IMPLICIT);
+                            imm.showSoftInput(inputEditText, InputMethodManager.SHOW_IMPLICIT);
                         }
                     });
                     dlg.show();

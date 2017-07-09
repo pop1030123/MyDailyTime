@@ -16,6 +16,7 @@
         app:dg_textColor="#000"
         app:dg_textSize="70sp"
         app:dg_textStrokeWidth="3dp"
+        android:layout_marginBottom="20dp"
         />
 
 
@@ -23,8 +24,9 @@
         android:id="@+id/start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_item"
+        android:background="@drawable/btn_bg"
         android:padding="@dimen/button_padding"
+        android:textColor="@color/text_color"
         android:text="start"/>
 
 
@@ -32,8 +34,9 @@
         android:id="@+id/stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_item"
+        android:background="@drawable/btn_bg"
         android:padding="@dimen/button_padding"
+        android:textColor="@color/text_color"
         android:text="stop"/>
 
 
@@ -41,8 +44,9 @@
         android:id="@+id/resume"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_item"
+        android:background="@drawable/btn_bg"
         android:padding="@dimen/button_padding"
+        android:textColor="@color/text_color"
         android:text="resume"/>
 
 </LinearLayout>

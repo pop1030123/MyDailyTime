@@ -9,21 +9,25 @@
               android:orientation="vertical">
 
     <TextView
+        android:id="@+id/title_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="input a name:"
+        android:text="Input a name:"
         android:textColor="#000"/>
 
     <EditText
         android:id="@+id/edit_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_item"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_bg"
+        android:textColor="@color/text_color"
         android:padding="@dimen/button_padding"
         android:text="confirm"/>
 </LinearLayout>
