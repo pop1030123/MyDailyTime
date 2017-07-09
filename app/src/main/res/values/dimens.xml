@@ -11,4 +11,5 @@
     <dimen name="dlg_padding">0dp</dimen>
 
     <dimen name="title_size">22sp</dimen>
+    <dimen name="main_item_text_size">18sp</dimen>
 </resources>

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:layout_marginBottom="10dp"
+              android:layout_marginBottom="15dp"
               android:orientation="vertical">
 
     <LinearLayout
@@ -14,11 +14,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textSize="@dimen/main_item_text_size"
             android:text="name"/>
         <TextView
             android:id="@+id/duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/main_item_text_size"
             android:text="1h2m3s"/>
     </LinearLayout>
 
@@ -26,5 +28,5 @@
         android:id="@+id/duration_progress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
+        style="@style/progress_horizontal"/>
 </LinearLayout>

@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.popfu.mydailytime.R;
+import com.popfu.mydailytime.util.L;
 import com.popfu.mydailytime.vo.TimeUnit;
 
 import java.util.List;
@@ -45,7 +46,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ItemHolder> {
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCallback.onItemClick(Integer.parseInt(v.getTag().toString()));
+                mCallback.onItemClick(((TimeUnit)v.getTag()));
             }
         });
         return holder;
@@ -53,11 +54,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ItemHolder> {
 
     @Override
     public void onBindViewHolder(ItemHolder holder, int position) {
-        holder.titleView.setText(mTimeUnitList.get(position).getName());
-        holder.durationView.setText(mTimeUnitList.get(position).getDurationString());
+        TimeUnit thisUnit = mTimeUnitList.get(position) ;
+        holder.titleView.setText(thisUnit.getName());
+        holder.durationView.setText(thisUnit.getDurationString());
         // TODO: 08/07/2017
         holder.durationProgress.setProgress(50);
-        holder.itemView.setTag(position);
+        holder.itemView.setTag(thisUnit);
     }
 
     @Override
@@ -66,6 +68,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ItemHolder> {
     }
 
     public TimeUnit getItem(int position) {
+        L.d("getItem:"+position);
         return mTimeUnitList.get(position);
     }
 
@@ -85,6 +88,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ItemHolder> {
 
     public void deleteItem(TimeUnit deleteUnit) {
         int index = getIndex(deleteUnit);
+        L.d("deleteItem:index:"+index+"::"+deleteUnit);
         if (index != -1) {
             mTimeUnitList.remove(index);
             notifyItemRemoved(index);
@@ -120,6 +124,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ItemHolder> {
     }
 
     public interface Callback {
-        void onItemClick(int position);
+        void onItemClick(TimeUnit unit);
     }
 }
