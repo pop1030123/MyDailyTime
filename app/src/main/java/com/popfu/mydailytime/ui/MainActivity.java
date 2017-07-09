@@ -17,6 +17,7 @@ import android.view.MenuItem;
 
 import com.popfu.mydailytime.R;
 import com.popfu.mydailytime.event.EventAddUnit;
+import com.popfu.mydailytime.event.EventDeleteUnit;
 import com.popfu.mydailytime.event.EventUpdateUnit;
 import com.popfu.mydailytime.presenter.MainPresenter;
 
@@ -132,15 +133,13 @@ public class MainActivity extends BaseActivity
                 .start() ;
     }
 
-    @Override
-    public void onItemChanged(int position) {
-
-    }
-
     public void onEvent(EventAddUnit eventAddUnit){
         mMainAdapter.addItem(eventAddUnit.getUnit());
     }
     public void onEvent(EventUpdateUnit eventUpdateUnit){
         mMainAdapter.updateItem(eventUpdateUnit.getUnit());
+    }
+    public void onEvent(EventDeleteUnit eventDeleteUnit){
+        mMainAdapter.deleteItem(eventDeleteUnit.getUnit());
     }
 }

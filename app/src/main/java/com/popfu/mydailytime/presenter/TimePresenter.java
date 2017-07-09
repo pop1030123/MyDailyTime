@@ -20,4 +20,11 @@ public class TimePresenter extends BasePresenter {
         L.d("修改Unit:"+unit);
         return count ;
     }
+
+
+    public int deleteUnit(int unit_id){
+        int count = mTimeUnitDao.deleteById(unit_id) ;
+        L.d("删除unit:"+count+":id:"+unit_id);
+        return count ;
+    }
 }

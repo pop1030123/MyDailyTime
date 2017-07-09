@@ -6,16 +6,11 @@ import com.popfu.mydailytime.vo.TimeUnit;
  * Created by pengfu on 09/07/2017.
  */
 
-public class EventUpdateUnit {
+public class EventUpdateUnit extends EventUnit {
 
-    private TimeUnit unit ;
 
     public EventUpdateUnit(TimeUnit unit){
-        this.unit = unit ;
+        super(unit);
     }
 
-
-    public TimeUnit getUnit() {
-        return unit;
-    }
 }

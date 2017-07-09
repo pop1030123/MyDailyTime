@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.popfu.mydailytime.R;
 import com.popfu.mydailytime.event.EventAddUnit;
+import com.popfu.mydailytime.event.EventDeleteUnit;
 import com.popfu.mydailytime.event.EventUpdateUnit;
 import com.popfu.mydailytime.presenter.TimePresenter;
 import com.popfu.mydailytime.util.DeviceUtil;
@@ -66,15 +67,21 @@ public class TimeActivity extends Activity implements View.OnClickListener {
     @AfterViews
     void afterViews(){
 
+        TextView centerTitle =(TextView) findViewById(R.id.center_button) ;
+        TextView rightTitle =(TextView) findViewById(R.id.right_button) ;
         mStartView.setOnClickListener(this);
         mStopView.setOnClickListener(this);
         mResumeView.setOnClickListener(this);
+        rightTitle.setOnClickListener(this);
         if(mTimeUnit == null){
             showView(TYPE_START);
+            rightTitle.setText("");
+            centerTitle.setText("计时器");
         }else{
             showView(TYPE_RESUME);
+            rightTitle.setText("删除");
+            centerTitle.setText(mTimeUnit.getName());
         }
-
     }
 
     private void showView(int type){
@@ -165,6 +172,13 @@ public class TimeActivity extends Activity implements View.OnClickListener {
             case R.id.resume:
                 isNewUnit = false ;
                 showView(TYPE_STOP);
+                break ;
+            case R.id.right_button:
+                // delete time unit
+                mPresenter.deleteUnit(mTimeUnit.getId()) ;
+                EventBus.getDefault().post(new EventDeleteUnit(mTimeUnit));
+                // 关闭页面，返回首页
+                finish();
                 break ;
         }
     }

@@ -3,50 +3,58 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:gravity="center"
               android:orientation="vertical">
 
+    <include layout="@layout/title_bar"/>
 
-    <com.carlosdelachica.timelydigitalclock.TimelyDigitalClockView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:dg_secondsTextSize="40sp"
-        app:dg_secondsTextStrokeWidth="1dp"
-        app:dg_textColor="#000"
-        app:dg_textSize="70sp"
-        app:dg_textStrokeWidth="3dp"
-        android:layout_marginBottom="20dp"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
 
 
-    <TextView
-        android:id="@+id/start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/btn_bg"
-        android:padding="@dimen/button_padding"
-        android:textColor="@color/text_color"
-        android:text="start"/>
+        <com.carlosdelachica.timelydigitalclock.TimelyDigitalClockView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:dg_secondsTextSize="40sp"
+            app:dg_secondsTextStrokeWidth="1dp"
+            app:dg_textColor="#000"
+            app:dg_textSize="70sp"
+            app:dg_textStrokeWidth="3dp"
+            />
 
 
-    <TextView
-        android:id="@+id/stop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/btn_bg"
-        android:padding="@dimen/button_padding"
-        android:textColor="@color/text_color"
-        android:text="stop"/>
+        <TextView
+            android:id="@+id/start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_bg"
+            android:padding="@dimen/button_padding"
+            android:text="start"
+            android:textColor="@color/text_color"/>
 
 
-    <TextView
-        android:id="@+id/resume"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/btn_bg"
-        android:padding="@dimen/button_padding"
-        android:textColor="@color/text_color"
-        android:text="resume"/>
+        <TextView
+            android:id="@+id/stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_bg"
+            android:padding="@dimen/button_padding"
+            android:text="stop"
+            android:textColor="@color/text_color"/>
 
+
+        <TextView
+            android:id="@+id/resume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_bg"
+            android:padding="@dimen/button_padding"
+            android:text="resume"
+            android:textColor="@color/text_color"/>
+
+    </LinearLayout>
 </LinearLayout>

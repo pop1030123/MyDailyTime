@@ -9,4 +9,6 @@
 
     <dimen name="button_padding">10dp</dimen>
     <dimen name="dlg_padding">0dp</dimen>
+
+    <dimen name="title_size">22sp</dimen>
 </resources>
