@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.popfu.mydailytime.R;
 import com.popfu.mydailytime.util.L;
+import com.popfu.mydailytime.util.TimeUtil;
 import com.popfu.mydailytime.vo.TimeUnit;
 
 import java.util.List;
@@ -59,7 +60,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ItemHolder> {
     public void onBindViewHolder(ItemHolder holder, int position) {
         TimeUnit thisUnit = mTimeUnitList.get(position) ;
         holder.titleView.setText(thisUnit.getName());
-        holder.durationView.setText(thisUnit.getDurationString());
+        holder.durationView.setText(TimeUtil.getDuration(thisUnit.getDuration()));
         // TODO: 08/07/2017
         holder.durationProgress.setProgress(50);
 //        LayerDrawable drawable = (LayerDrawable)holder.durationProgress.getProgressDrawable() ;

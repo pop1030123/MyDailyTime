@@ -14,6 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.carlosdelachica.timelydigitalclock.TimelyDigitalClockView;
 import com.popfu.mydailytime.R;
 import com.popfu.mydailytime.event.EventAddUnit;
 import com.popfu.mydailytime.event.EventDeleteUnit;
@@ -44,6 +45,8 @@ public class TimeActivity extends Activity implements View.OnClickListener {
 
     @ViewById(R.id.quote)
     TextView mQuoteView ;
+    @ViewById(R.id.clockView)
+    TimelyDigitalClockView mClockView ;
 
     @ViewById(R.id.start)
     TextView mStartView ;
@@ -88,10 +91,12 @@ public class TimeActivity extends Activity implements View.OnClickListener {
             showView(TYPE_START);
             rightTitle.setVisibility(View.INVISIBLE);
             centerTitle.setText("未标题");
+            mClockView.setStartTime(0);
         }else{
             showView(TYPE_RESUME);
             rightTitle.setText("删除");
             centerTitle.setText(mTimeUnit.getName());
+            mClockView.setStartTime(mTimeUnit.getDuration());
         }
     }
 
@@ -127,6 +132,7 @@ public class TimeActivity extends Activity implements View.OnClickListener {
         {
             case R.id.start:
                 isNewUnit = true ;
+                mClockView.startTime();
                 showView(TYPE_STOP);
                 // create a time unit
                 mTimeUnit = new TimeUnit() ;
@@ -134,14 +140,13 @@ public class TimeActivity extends Activity implements View.OnClickListener {
                 mPresenter.addUnit(mTimeUnit);
                 break ;
             case R.id.stop:
+                mClockView.stopTime();
                 if(TextUtils.isEmpty(mTimeUnit.getName())){
                     // to create a name
                     final Dialog dlg = new Dialog(this) ;
                     dlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     View contentView = getLayoutInflater().inflate(R.layout.dlg_input_name ,null ,false) ;
                     final EditText inputEditText = (EditText) contentView.findViewById(R.id.edit_name) ;
-                    TextView titleView = (TextView) contentView.findViewById(R.id.title_view) ;
-                    TextView ConfirmView = (TextView) contentView.findViewById(R.id.confirm) ;
                     int dlg_width = (int) (DeviceUtil.getScreenWidth()/1.5f);
                     int dlg_height = WindowManager.LayoutParams.WRAP_CONTENT;
 
@@ -161,8 +166,7 @@ public class TimeActivity extends Activity implements View.OnClickListener {
                                 ToastUtil.show("请输入标题");
                             }else{
                                 mTimeUnit.setName(input_name);
-                                mTimeUnit.setDuration(500);
-                                mPresenter.updateUnit(mTimeUnit) ;
+                                updateTimeUnit();
                                 dlg.dismiss();
                                 exitPage(isNewUnit) ;
                             }
@@ -177,11 +181,13 @@ public class TimeActivity extends Activity implements View.OnClickListener {
                     });
                     dlg.show();
                 }else{
+                    updateTimeUnit();
                     exitPage(isNewUnit) ;
                 }
                 break ;
             case R.id.resume:
                 isNewUnit = false ;
+                mClockView.startTime();
                 showView(TYPE_STOP);
                 break ;
             case R.id.right_button:
@@ -192,6 +198,11 @@ public class TimeActivity extends Activity implements View.OnClickListener {
                 finish();
                 break ;
         }
+    }
+
+    private void updateTimeUnit(){
+        mTimeUnit.setDuration(mClockView.getMillis());
+        mPresenter.updateUnit(mTimeUnit) ;
     }
 
     private void exitPage(boolean isNewUnit){

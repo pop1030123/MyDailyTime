@@ -37,6 +37,8 @@ public class TimelyDigitalClockView extends LinearLayout implements Clock.ClockC
     private int secondsStrokeWidth;
     private boolean format24H;
 
+    private Clock mClock ;
+
     public TimelyDigitalClockView(Context context) {
         super(context);
         init(context, null);
@@ -89,10 +91,25 @@ public class TimelyDigitalClockView extends LinearLayout implements Clock.ClockC
 
     private void initClock() {
         initProperties();
-        new Clock(format24H
+    }
+
+    public void setStartTime(long millis){
+        mClock = new Clock(format24H
                 ? Clock.ClockMode.FORMAT_24
                 : Clock.ClockMode.FORMAT_12
-                , this);
+                , this ,millis);
+    }
+
+    public void startTime(){
+        mClock.startTime();
+    }
+
+    public void stopTime(){
+        mClock.stopTime();
+    }
+
+    public long getMillis(){
+        return mClock.getMillis() ;
     }
 
     private void initProperties() {
