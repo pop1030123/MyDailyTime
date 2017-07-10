@@ -31,6 +31,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ItemHolder> {
 
     private Callback mCallback;
 
+    private long mMaxMillis ;
+
     public MainAdapter(Context context) {
         mContext = context;
     }
@@ -41,6 +43,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ItemHolder> {
 
     public void setCallback(Callback callback) {
         mCallback = callback;
+    }
+
+    public void setMaxMillis(long millis){
+        this.mMaxMillis = millis ;
     }
 
     @Override
@@ -61,8 +67,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ItemHolder> {
         TimeUnit thisUnit = mTimeUnitList.get(position) ;
         holder.titleView.setText(thisUnit.getName());
         holder.durationView.setText(TimeUtil.getDuration(thisUnit.getDuration()));
-        // TODO: 08/07/2017
-        holder.durationProgress.setProgress(50);
+        int progress = 0 ;
+        if(mMaxMillis > 0){
+            progress = (int)(100 * (thisUnit.getDuration() / (mMaxMillis*1f))) ;
+        }
+        holder.durationProgress.setProgress(progress);
 //        LayerDrawable drawable = (LayerDrawable)holder.durationProgress.getProgressDrawable() ;
 //        L.d("drawable:num:"+drawable.getNumberOfLayers());
 //        ClipDrawable clipDrawable =(ClipDrawable) drawable.findDrawableByLayerId(android.R.id.progress) ;
@@ -76,14 +85,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ItemHolder> {
         return mTimeUnitList.size();
     }
 
-    public TimeUnit getItem(int position) {
-        L.d("getItem:"+position);
-        return mTimeUnitList.get(position);
-    }
-
     public void addItem(TimeUnit unit) {
         mTimeUnitList.add(getItemCount(), unit);
-        notifyItemInserted(getItemCount() - 1);
+//        notifyItemInserted(getItemCount() - 1);
     }
 
     public void updateItem(TimeUnit updateUnit) {
@@ -91,7 +95,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ItemHolder> {
         if (index != -1) {
             mTimeUnitList.remove(index);
             mTimeUnitList.add(index, updateUnit);
-            notifyItemChanged(index);
+//            notifyItemChanged(index);
         }
     }
 
@@ -100,7 +104,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ItemHolder> {
         L.d("deleteItem:index:"+index+"::"+deleteUnit);
         if (index != -1) {
             mTimeUnitList.remove(index);
-            notifyItemRemoved(index);
+//            notifyItemRemoved(index);
         }
     }
 

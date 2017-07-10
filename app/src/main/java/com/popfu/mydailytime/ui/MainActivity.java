@@ -44,6 +44,7 @@ public class MainActivity extends BaseActivity
         mMainPresenter = new MainPresenter() ;
         mMainAdapter = new MainAdapter(this) ;
         mMainAdapter.setCallback(this);
+        mMainAdapter.setMaxMillis(mMainPresenter.getMaxMillis());
         mMainAdapter.setTimeUnitList(mMainPresenter.getAllTimeUnits());
         mRecyclerView = (RecyclerView)findViewById(R.id.recycler_view) ;
         mRecyclerView.setAdapter(mMainAdapter);
@@ -134,11 +135,20 @@ public class MainActivity extends BaseActivity
 
     public void onEvent(EventAddUnit eventAddUnit){
         mMainAdapter.addItem(eventAddUnit.getUnit());
+        notifyTimeProgress();
     }
     public void onEvent(EventUpdateUnit eventUpdateUnit){
         mMainAdapter.updateItem(eventUpdateUnit.getUnit());
+        notifyTimeProgress();
     }
     public void onEvent(EventDeleteUnit eventDeleteUnit){
         mMainAdapter.deleteItem(eventDeleteUnit.getUnit());
+        notifyTimeProgress();
+    }
+
+    private void notifyTimeProgress(){
+        long maxMillis = mMainPresenter.getMaxMillis() ;
+        mMainAdapter.setMaxMillis(maxMillis);
+        mMainAdapter.notifyDataSetChanged();
     }
 }
