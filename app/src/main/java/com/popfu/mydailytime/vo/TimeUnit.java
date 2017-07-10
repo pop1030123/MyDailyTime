@@ -19,6 +19,10 @@ public class TimeUnit implements Serializable {
     private String name ;
     @DatabaseField
     private long startTime ;
+
+    /**
+     * 时长，以秒为单位
+     */
     @DatabaseField
     private long duration;
 

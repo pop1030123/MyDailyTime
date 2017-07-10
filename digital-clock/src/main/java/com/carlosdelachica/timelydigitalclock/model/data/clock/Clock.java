@@ -1,7 +1,5 @@
 package com.carlosdelachica.timelydigitalclock.model.data.clock;
 
-import android.util.Log;
-
 import com.carlosdelachica.timelydigitalclock.model.data.base.TimeSet;
 import com.carlosdelachica.timelydigitalclock.model.data.base.TimeUnitSet;
 import com.carlosdelachica.timelydigitalclock.model.data.base.TimeUnitType;
@@ -23,18 +21,18 @@ public class Clock {
     private ClockMode clockMode;
     private ClockCallback callback;
 
-    private long mStartMillis;
+    private long mStartInSecond;
 
     public Clock(ClockCallback callback) {
         this(ClockMode.FORMAT_24, callback ,0);
     }
 
-    public Clock(ClockMode clockMode, ClockCallback callback ,long millis) {
+    public Clock(ClockMode clockMode, ClockCallback callback ,long seconds) {
         this.clockMode = clockMode;
         this.callback = callback;
-        this.mStartMillis = millis ;
+        this.mStartInSecond = seconds ;
         formatter.setTimeZone(TimeZone.getTimeZone("GMT+00:00"));
-        TimeUnitSet[] sets = getTimeUnitSets(millis) ;
+        TimeUnitSet[] sets = getTimeUnitSets(seconds) ;
         callback.onTimeUpdated(new TimeSet(sets[0], sets[1], sets[2]));
     }
 
@@ -42,8 +40,8 @@ public class Clock {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                mStartMillis += 1000 ;
-                TimeUnitSet[] sets = getTimeUnitSets(mStartMillis) ;
+                mStartInSecond += 1 ;
+                TimeUnitSet[] sets = getTimeUnitSets(mStartInSecond) ;
                 callback.onTimeUpdated(new TimeSet(sets[0], sets[1], sets[2]));
 
             }
@@ -55,13 +53,13 @@ public class Clock {
     }
 
     public long getMillis(){
-        return mStartMillis ;
+        return mStartInSecond;
     }
 
-    private TimeUnitSet[] getTimeUnitSets(long millis){
+    private TimeUnitSet[] getTimeUnitSets(long durationInSecond){
         TimeUnitSet[] sets = new TimeUnitSet[3] ;
 
-        String hms = formatter.format(millis);
+        String hms = formatter.format(durationInSecond*1000);
         Calendar calendar = formatter.getCalendar() ;
 
         int hour = calendar.get(clockMode == ClockMode.FORMAT_24 ? Calendar.HOUR_OF_DAY : Calendar.HOUR);

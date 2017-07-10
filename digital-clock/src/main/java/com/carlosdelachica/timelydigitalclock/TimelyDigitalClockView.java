@@ -93,11 +93,11 @@ public class TimelyDigitalClockView extends LinearLayout implements Clock.ClockC
         initProperties();
     }
 
-    public void setStartTime(long millis){
+    public void setStartTime(long seconds){
         mClock = new Clock(format24H
                 ? Clock.ClockMode.FORMAT_24
                 : Clock.ClockMode.FORMAT_12
-                , this ,millis);
+                , this ,seconds);
     }
 
     public void startTime(){
