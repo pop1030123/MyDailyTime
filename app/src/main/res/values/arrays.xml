@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="quotes">
+        <item >@string/q0</item>
+        <item >@string/q1</item>
+        <item >@string/q2</item>
+        <item >@string/q3</item>
+        <item >@string/q4</item>
+        <item >@string/q5</item>
+        <item >@string/q6</item>
+        <item >@string/q7</item>
+        <item >@string/q8</item>
+        <item >@string/q9</item>
+    </string-array>
+</resources>

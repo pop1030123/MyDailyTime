@@ -42,6 +42,9 @@ public class TimeActivity extends Activity implements View.OnClickListener {
 
     public static final String KEY_TIME_UNIT = "key_time_unit" ;
 
+    @ViewById(R.id.quote)
+    TextView mQuoteView ;
+
     @ViewById(R.id.start)
     TextView mStartView ;
     @ViewById(R.id.stop)
@@ -57,11 +60,16 @@ public class TimeActivity extends Activity implements View.OnClickListener {
 
     private TimeUnit mTimeUnit ;
 
+    private String mQuotesString ;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = new TimePresenter() ;
         mTimeUnit = (TimeUnit) getIntent().getSerializableExtra(KEY_TIME_UNIT) ;
+
+        String[] quotes=getResources().getStringArray(R.array.quotes);
+        mQuotesString = quotes[0] ;
     }
 
     @AfterViews
@@ -73,10 +81,13 @@ public class TimeActivity extends Activity implements View.OnClickListener {
         mStopView.setOnClickListener(this);
         mResumeView.setOnClickListener(this);
         rightTitle.setOnClickListener(this);
+
+        mQuoteView.setText(mQuotesString);
+
         if(mTimeUnit == null){
             showView(TYPE_START);
-            rightTitle.setText("");
-            centerTitle.setText("计时器");
+            rightTitle.setVisibility(View.INVISIBLE);
+            centerTitle.setText("未标题");
         }else{
             showView(TYPE_RESUME);
             rightTitle.setText("删除");
@@ -138,7 +149,7 @@ public class TimeActivity extends Activity implements View.OnClickListener {
                     lp.width = dlg_width;
                     lp.height = dlg_height ;
                     contentView.setPadding(dlg_width/6 ,DeviceUtil.dip2px(20) ,dlg_width/6 ,DeviceUtil.dip2px(20));
-                    dlg.getWindow().setBackgroundDrawableResource(R.drawable.transparent);
+                    dlg.getWindow().setBackgroundDrawableResource(R.drawable.d_transparent);
                     dlg.setContentView(contentView ,lp);
                     dlg.setCanceledOnTouchOutside(false);
                     dlg.setCancelable(false);

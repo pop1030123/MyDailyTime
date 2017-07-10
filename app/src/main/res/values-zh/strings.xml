@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">我的时间</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="q0">没有人不爱惜他的生命，但很少人珍视他的时间。</string>
+    <string name="q1">从不浪费时间的人，没有工夫抱怨时间不够。</string>
+    <string name="q2">任何事物都无法抗拒吞食一切的时间。</string>
+    <string name="q3">最聪明的人是最不愿浪费时间的人。</string>
+    <string name="q4">平庸的人关心怎样耗费时间，有才能的人竭力利用时间。</string>
+    <string name="q5">少年易学老难成，一寸光阴不可轻。</string>
+    <string name="q6">一寸光阴一寸金，寸金难买寸光阴。</string>
+    <string name="q7">莫等闲，白了少年头，空悲切。</string>
+    <string name="q8">一年之计在于春，一日之计在于晨。</string>
+    <string name="q9">少壮不努力，老大徒伤悲。</string>
+</resources>

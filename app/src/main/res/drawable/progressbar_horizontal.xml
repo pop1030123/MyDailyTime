@@ -12,6 +12,7 @@
             <shape>
                 <corners android:radius="@dimen/progress_bar_radius" />
                 <solid android:color="@color/progress_color"/>
+                <stroke android:width="5dp" android:color="@color/c_transparent"/>
             </shape>
         </clip>
     </item>
@@ -22,6 +23,7 @@
             <shape>
                 <corners android:radius="@dimen/progress_bar_radius" />
                 <solid android:color="@color/progress_color"/>
+                <stroke android:width="5dp" android:color="@color/c_transparent"/>
             </shape>
         </clip>
     </item>

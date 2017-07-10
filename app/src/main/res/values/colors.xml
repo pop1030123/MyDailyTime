@@ -5,18 +5,22 @@
     <color name="colorAccent">#FF4081</color>
 
 
-    <drawable name="transparent">#0000</drawable>
+    <color name="c_transparent">#0000</color>
+    <drawable name="d_transparent">#0000</drawable>
 
     <drawable name="d_progress_bg">#fff</drawable>
 
     <color name="c_text_normal">#000</color>
-    <color name="c_text_press">#8fff</color>
+    <color name="c_text_press">#8000</color>
 
     <color name="btn_bg_normal">#000</color>
-    <color name="btn_bg_press">#aaa</color>
+    <color name="btn_bg_press">#8000</color>
 
     <color name="btn_bg_light_normal">#fff</color>
     <color name="btn_bg_light_press">#8fff</color>
+
+    <color name="text_color_light_normal">#fff</color>
+    <color name="text_color_light_press">#8fff</color>
 
     <color name="progress_color">#08f</color>
 

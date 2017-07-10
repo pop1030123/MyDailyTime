@@ -5,4 +5,16 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+
+    <string name="q0">Never put off till tomorrow what may be done today.</string>
+    <string name="q1">Procrastination is the thief of time. </string>
+    <string name="q2">One of these days is none of these days. </string>
+    <string name="q3">Tomorrow never comes. </string>
+    <string name="q4">Time lost can not be recalled. </string>
+    <string name="q5">Time is life and when the idle man kills time, he kills himself. </string>
+    <string name="q6">"Time stays not the fool's leisure. "</string>
+    <string name="q7">Time and tide wait for no man.</string>
+    <string name="q8">Time is money.</string>
+    <string name="q9">A day is a miniature of eternity. </string>
 </resources>
