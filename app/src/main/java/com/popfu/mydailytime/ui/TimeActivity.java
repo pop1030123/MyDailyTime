@@ -217,4 +217,10 @@ public class TimeActivity extends Activity implements View.OnClickListener {
         }
         finish();
     }
+
+    @Override
+    public void onBackPressed() {
+// TODO: 11/07/2017 处理返回按钮 
+        super.onBackPressed();
+    }
 }

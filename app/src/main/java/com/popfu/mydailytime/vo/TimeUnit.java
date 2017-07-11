@@ -26,6 +26,9 @@ public class TimeUnit implements Serializable {
     @DatabaseField
     private long duration;
 
+
+    private boolean showDateTime ;
+
     public TimeUnit(){}
 
     public TimeUnit(String name){
@@ -64,11 +67,14 @@ public class TimeUnit implements Serializable {
         this.duration = duration;
     }
 
-    public String getDurationString(){
-        // TODO: 08/07/2017
-        return String.valueOf(duration) ;
+
+    public boolean isShowDateTime() {
+        return showDateTime;
     }
 
+    public void setShowDateTime(boolean showDateTime) {
+        this.showDateTime = showDateTime;
+    }
 
     @Override
     public String toString() {

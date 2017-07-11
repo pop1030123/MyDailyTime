@@ -22,4 +22,6 @@
     <string name="q7">Time and tide wait for no man.</string>
     <string name="q8">Time is money.</string>
     <string name="q9">A day is a miniature of eternity. </string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
 </resources>

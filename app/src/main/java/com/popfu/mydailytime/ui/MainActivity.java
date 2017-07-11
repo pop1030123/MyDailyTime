@@ -135,20 +135,21 @@ public class MainActivity extends BaseActivity
 
     public void onEvent(EventAddUnit eventAddUnit){
         mMainAdapter.addItem(eventAddUnit.getUnit());
-        notifyTimeProgress();
+        notifyDataSetChanged();
     }
     public void onEvent(EventUpdateUnit eventUpdateUnit){
         mMainAdapter.updateItem(eventUpdateUnit.getUnit());
-        notifyTimeProgress();
+        notifyDataSetChanged();
     }
     public void onEvent(EventDeleteUnit eventDeleteUnit){
         mMainAdapter.deleteItem(eventDeleteUnit.getUnit());
-        notifyTimeProgress();
+        notifyDataSetChanged();
     }
 
-    private void notifyTimeProgress(){
+    private void notifyDataSetChanged(){
         long maxMillis = mMainPresenter.getMaxMillis() ;
         mMainAdapter.setMaxMillis(maxMillis);
+        mMainAdapter.resortDataSet();
         mMainAdapter.notifyDataSetChanged();
     }
 }
