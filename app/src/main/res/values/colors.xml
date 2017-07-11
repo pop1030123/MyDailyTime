@@ -24,7 +24,8 @@
 
     <color name="progress_color">#08f</color>
 
-    <color name="title_bar_color">#08f</color>
+    <color name="main_color_press">#808f</color>
+    <color name="main_color_normal">#08f</color>
     <color name="c_white">#fff</color>
 
 </resources>

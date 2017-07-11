@@ -4,7 +4,12 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">设置</string>
+    <string name="resume">继续</string>
+    <string name="stop">停止</string>
+    <string name="start">开始</string>
+    <string name="dlg_title">请输入标题:</string>
+    <string name="confirm">确定</string>
 
     <string name="q0">没有人不爱惜他的生命，但很少人珍视他的时间。</string>
     <string name="q1">从不浪费时间的人，没有工夫抱怨时间不够。</string>

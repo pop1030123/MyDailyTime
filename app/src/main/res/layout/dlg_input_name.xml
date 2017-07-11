@@ -12,7 +12,7 @@
         android:id="@+id/title_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Input a name:"
+        android:text="@string/dlg_title"
         android:textColor="#000"/>
 
     <EditText
@@ -28,6 +28,10 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/btn_bg"
         android:textColor="@color/text_color"
-        android:padding="@dimen/button_padding"
-        android:text="confirm"/>
+        android:paddingLeft="@dimen/button_paddingLR"
+        android:paddingRight="@dimen/button_paddingLR"
+        android:paddingTop="@dimen/button_paddingTB"
+        android:paddingBottom="@dimen/button_paddingTB"
+        android:textSize="@dimen/btn_text_size"
+        android:text="@string/confirm"/>
 </LinearLayout>

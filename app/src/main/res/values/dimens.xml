@@ -7,10 +7,12 @@
     <dimen name="fab_margin">16dp</dimen>
 
 
-    <dimen name="button_padding">10dp</dimen>
+    <dimen name="button_paddingLR">10dp</dimen>
+    <dimen name="button_paddingTB">5dp</dimen>
     <dimen name="dlg_padding">0dp</dimen>
     <dimen name="progress_bar_radius">10dp</dimen>
 
     <dimen name="title_size">22sp</dimen>
     <dimen name="main_item_text_size">18sp</dimen>
+    <dimen name="btn_text_size">18sp</dimen>
 </resources>

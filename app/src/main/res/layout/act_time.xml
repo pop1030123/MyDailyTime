@@ -10,58 +10,81 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/quote"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:layout_margin="10dp"/>
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            >
+            <TextView
+                android:id="@+id/quote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:textSize="18sp"/>
+        </LinearLayout>
 
 
-        <com.carlosdelachica.timelydigitalclock.TimelyDigitalClockView
-            android:id="@+id/clockView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            app:dg_secondsTextSize="40sp"
-            app:dg_secondsTextStrokeWidth="1dp"
-            app:dg_textColor="#000"
-            app:dg_textSize="70sp"
-            app:dg_textStrokeWidth="3dp"
-            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            >
+            <com.carlosdelachica.timelydigitalclock.TimelyDigitalClockView
+                android:id="@+id/clockView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:dg_secondsTextSize="40sp"
+                app:dg_secondsTextStrokeWidth="1dp"
+                app:dg_textColor="#000"
+                app:dg_textSize="70sp"
+                app:dg_textStrokeWidth="3dp"
+                />
+        </LinearLayout>
 
 
-        <TextView
-            android:id="@+id/start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_bg"
-            android:padding="@dimen/button_padding"
-            android:text="start"
-            android:textColor="@color/text_color"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            >
+            <TextView
+                android:id="@+id/start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_bg"
+                android:padding="@dimen/button_paddingLR"
+                android:text="@string/start"
+                android:textSize="@dimen/btn_text_size"
+                android:textColor="@color/text_color"/>
 
 
-        <TextView
-            android:id="@+id/stop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_bg"
-            android:padding="@dimen/button_padding"
-            android:text="stop"
-            android:textColor="@color/text_color"/>
+            <TextView
+                android:id="@+id/stop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_bg"
+                android:padding="@dimen/button_paddingLR"
+                android:text="@string/stop"
+                android:textSize="@dimen/btn_text_size"
+                android:textColor="@color/text_color"/>
 
 
-        <TextView
-            android:id="@+id/resume"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_bg"
-            android:padding="@dimen/button_padding"
-            android:text="resume"
-            android:textColor="@color/text_color"/>
-
+            <TextView
+                android:id="@+id/resume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_bg"
+                android:padding="@dimen/button_paddingLR"
+                android:text="@string/resume"
+                android:textSize="@dimen/btn_text_size"
+                android:textColor="@color/text_color"/>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

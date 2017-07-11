@@ -29,6 +29,8 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.Random;
+
 import de.greenrobot.event.EventBus;
 
 import static android.view.View.GONE;
@@ -72,7 +74,9 @@ public class TimeActivity extends Activity implements View.OnClickListener {
         mTimeUnit = (TimeUnit) getIntent().getSerializableExtra(KEY_TIME_UNIT) ;
 
         String[] quotes=getResources().getStringArray(R.array.quotes);
-        mQuotesString = quotes[0] ;
+        int length = quotes.length ;
+        int index = new Random().nextInt(length) ;
+        mQuotesString = quotes[index] ;
     }
 
     @AfterViews

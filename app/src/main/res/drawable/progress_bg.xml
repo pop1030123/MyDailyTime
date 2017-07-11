@@ -4,5 +4,5 @@
 
     <solid android:color="#0000" />
     <corners android:radius="@dimen/progress_bar_radius" />
-    <stroke android:color="@color/title_bar_color" android:width="2px"/>
+    <stroke android:color="@color/main_color_normal" android:width="2px"/>
 </shape>
