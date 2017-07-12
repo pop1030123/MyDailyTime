@@ -8,8 +8,10 @@
     <string name="resume">继续</string>
     <string name="stop">停止</string>
     <string name="start">开始</string>
-    <string name="dlg_title">请输入标题:</string>
+    <string name="dlg_input_title">请输入标题</string>
+    <string name="dlg_warn_stop_task">你的工作正在进行中，是否需要停止？</string>
     <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
 
     <string name="q0">没有人不爱惜他的生命，但很少人珍视他的时间。</string>
     <string name="q1">从不浪费时间的人，没有工夫抱怨时间不够。</string>

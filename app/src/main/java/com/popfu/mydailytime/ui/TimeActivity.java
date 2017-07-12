@@ -20,6 +20,8 @@ import com.popfu.mydailytime.event.EventAddUnit;
 import com.popfu.mydailytime.event.EventDeleteUnit;
 import com.popfu.mydailytime.event.EventUpdateUnit;
 import com.popfu.mydailytime.presenter.TimePresenter;
+import com.popfu.mydailytime.ui.widget.DLGCancelTask;
+import com.popfu.mydailytime.ui.widget.DLGInputTitle;
 import com.popfu.mydailytime.util.DeviceUtil;
 import com.popfu.mydailytime.util.L;
 import com.popfu.mydailytime.util.toast.ToastUtil;
@@ -129,12 +131,17 @@ public class TimeActivity extends Activity implements View.OnClickListener {
      * 是否是新创建的Unit
      */
     private boolean isNewUnit  ;
+    /**
+     * is clock running ?
+     */
+    private boolean isRunning  ;
 
     @Override
     public void onClick(View v) {
         switch (v.getId())
         {
             case R.id.start:
+                isRunning = true ;
                 isNewUnit = true ;
                 mClockView.startTime();
                 showView(TYPE_STOP);
@@ -144,52 +151,10 @@ public class TimeActivity extends Activity implements View.OnClickListener {
                 mPresenter.addUnit(mTimeUnit);
                 break ;
             case R.id.stop:
-                mClockView.stopTime();
-                if(TextUtils.isEmpty(mTimeUnit.getName())){
-                    // to create a name
-                    final Dialog dlg = new Dialog(this) ;
-                    dlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                    View contentView = getLayoutInflater().inflate(R.layout.dlg_input_name ,null ,false) ;
-                    final EditText inputEditText = (EditText) contentView.findViewById(R.id.edit_name) ;
-                    int dlg_width = (int) (DeviceUtil.getScreenWidth()/1.5f);
-                    int dlg_height = WindowManager.LayoutParams.WRAP_CONTENT;
-
-                    WindowManager.LayoutParams lp = new WindowManager.LayoutParams() ;
-                    lp.width = dlg_width;
-                    lp.height = dlg_height ;
-                    contentView.setPadding(dlg_width/6 ,DeviceUtil.dip2px(20) ,dlg_width/6 ,DeviceUtil.dip2px(20));
-                    dlg.getWindow().setBackgroundDrawableResource(R.drawable.d_transparent);
-                    dlg.setContentView(contentView ,lp);
-                    dlg.setCanceledOnTouchOutside(false);
-                    dlg.setCancelable(false);
-                    dlg.findViewById(R.id.confirm).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            String input_name = inputEditText.getText().toString() ;
-                            if(TextUtils.isEmpty(input_name)){
-                                ToastUtil.show("请输入标题");
-                            }else{
-                                mTimeUnit.setName(input_name);
-                                updateTimeUnit();
-                                dlg.dismiss();
-                                exitPage(isNewUnit) ;
-                            }
-                        }
-                    });
-                    dlg.setOnShowListener(new DialogInterface.OnShowListener() {
-                        @Override
-                        public void onShow(DialogInterface dialog) {
-                            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                            imm.showSoftInput(inputEditText, InputMethodManager.SHOW_IMPLICIT);
-                        }
-                    });
-                    dlg.show();
-                }else{
-                    updateTimeUnit();
-                    exitPage(isNewUnit) ;
-                }
+                stopTask() ;
                 break ;
             case R.id.resume:
+                isRunning = true ;
                 isNewUnit = false ;
                 mClockView.startTime();
                 showView(TYPE_STOP);
@@ -218,9 +183,60 @@ public class TimeActivity extends Activity implements View.OnClickListener {
         finish();
     }
 
+    private void stopTask(){
+        isRunning = false ;
+        mClockView.stopTime();
+        if(TextUtils.isEmpty(mTimeUnit.getName())){
+            // to create a name
+            final DLGInputTitle dlg = new DLGInputTitle(this) ;
+            dlg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String input_name = dlg.getInputEditText().getText().toString() ;
+                    if(TextUtils.isEmpty(input_name)){
+                        ToastUtil.show("请输入标题");
+                    }else{
+                        mTimeUnit.setName(input_name);
+                        updateTimeUnit();
+                        dlg.dismiss();
+                        exitPage(isNewUnit) ;
+                    }
+                }
+            });
+            dlg.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialog) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(dlg.getInputEditText(), InputMethodManager.SHOW_IMPLICIT);
+                }
+            });
+            dlg.show();
+        }else{
+            updateTimeUnit();
+            exitPage(isNewUnit) ;
+        }
+    }
+
     @Override
     public void onBackPressed() {
-// TODO: 11/07/2017 处理返回按钮 
-        super.onBackPressed();
+        // 处理返回按钮
+        if(isRunning){
+            final DLGCancelTask dlg = new DLGCancelTask(this) ;
+            dlg.setOnCancelListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dlg.dismiss();
+                }
+            });
+            dlg.setOnConfirmListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    stopTask() ;
+                }
+            });
+            dlg.show();
+        }else{
+            super.onBackPressed();
+        }
     }
 }

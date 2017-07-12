@@ -8,8 +8,10 @@
     <string name="resume">Resume</string>
     <string name="stop">Stop</string>
     <string name="start">Start</string>
-    <string name="dlg_title">Input a title:</string>
+    <string name="dlg_input_title">Input a title</string>
+    <string name="dlg_warn_stop_task">你的工作正在进行中，是否需要停止？</string>
     <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
 
 
     <string name="q0">Never put off till tomorrow what may be done today.</string>

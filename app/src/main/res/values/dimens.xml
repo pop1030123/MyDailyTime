@@ -7,8 +7,8 @@
     <dimen name="fab_margin">16dp</dimen>
 
 
-    <dimen name="button_paddingLR">10dp</dimen>
-    <dimen name="button_paddingTB">5dp</dimen>
+    <dimen name="button_paddingLR">15dp</dimen>
+    <dimen name="button_paddingTB">10dp</dimen>
     <dimen name="dlg_padding">0dp</dimen>
     <dimen name="progress_bar_radius">10dp</dimen>
 
