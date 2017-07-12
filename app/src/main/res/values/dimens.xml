@@ -15,4 +15,5 @@
     <dimen name="title_size">22sp</dimen>
     <dimen name="main_item_text_size">18sp</dimen>
     <dimen name="btn_text_size">18sp</dimen>
+    <dimen name="dlg_title_size">18sp</dimen>
 </resources>

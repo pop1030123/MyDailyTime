@@ -1,5 +1,7 @@
 package com.popfu.mydailytime.ui;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -10,6 +12,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,6 +28,7 @@ import com.popfu.mydailytime.ui.widget.DLGCancelTask;
 import com.popfu.mydailytime.ui.widget.DLGInputTitle;
 import com.popfu.mydailytime.util.DeviceUtil;
 import com.popfu.mydailytime.util.L;
+import com.popfu.mydailytime.util.PopAnimation;
 import com.popfu.mydailytime.util.toast.ToastUtil;
 import com.popfu.mydailytime.vo.TimeUnit;
 
@@ -115,9 +120,31 @@ public class TimeActivity extends Activity implements View.OnClickListener {
                 mResumeView.setVisibility(GONE);
                 break ;
             case TYPE_STOP:
-                mStartView.setVisibility(GONE);
-                mStopView.setVisibility(View.VISIBLE);
-                mResumeView.setVisibility(GONE);
+                if(isNewUnit){
+                    PopAnimation.init().view(mStartView)
+                            .duration(200)
+                            .scale(1,0)
+                            .interpolator(new AccelerateInterpolator())
+                            .showAfterAnim(false)
+                            .then(mStopView)
+                            .duration(200)
+                            .scale(0,1)
+                            .interpolator(new AccelerateInterpolator())
+                            .showAfterAnim(true)
+                            .start();
+                }else{
+                    PopAnimation.init().view(mResumeView)
+                            .duration(200)
+                            .scale(1,0)
+                            .interpolator(new AccelerateInterpolator())
+                            .showAfterAnim(false)
+                            .then(mStopView)
+                            .duration(200)
+                            .scale(0,1)
+                            .interpolator(new AccelerateInterpolator())
+                            .showAfterAnim(true)
+                            .start();
+                }
                 break ;
             case TYPE_RESUME:
                 mStartView.setVisibility(GONE);

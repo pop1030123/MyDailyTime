@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:text="@string/dlg_input_title"
         android:padding="20dp"
+        android:textSize="@dimen/dlg_title_size"
         android:textColor="#000"/>
 
     <EditText

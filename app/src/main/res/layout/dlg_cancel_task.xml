@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
+        android:textSize="@dimen/dlg_title_size"
         android:text="@string/dlg_warn_stop_task"
         android:textColor="#000"/>
 

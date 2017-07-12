@@ -30,6 +30,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/float_btn_bg"
+        app:backgroundTintMode="src_in"
         app:backgroundTint="@color/main_color_press"/>
 
 </android.support.design.widget.CoordinatorLayout>
