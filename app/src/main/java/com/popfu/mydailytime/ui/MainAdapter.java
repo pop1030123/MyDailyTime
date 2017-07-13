@@ -118,6 +118,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ItemHolder> {
 //        notifyItemInserted(getItemCount() - 1);
     }
 
+    public TimeUnit getItem(int position){
+        return mTimeUnitList.get(position) ;
+    }
+
     public void updateItem(TimeUnit updateUnit) {
         int index = getIndex(updateUnit);
         if (index != -1) {

@@ -12,12 +12,18 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.popfu.mydailytime.R;
 import com.popfu.mydailytime.event.EventAddUnit;
 import com.popfu.mydailytime.event.EventDeleteUnit;
 import com.popfu.mydailytime.event.EventUpdateUnit;
 import com.popfu.mydailytime.presenter.MainPresenter;
+import com.popfu.mydailytime.util.DeviceUtil;
+import com.popfu.mydailytime.util.L;
+import com.popfu.mydailytime.util.TimeUtil;
 import com.popfu.mydailytime.vo.TimeUnit;
 
 import static com.popfu.mydailytime.ui.TimeActivity.KEY_TIME_UNIT;
@@ -32,6 +38,8 @@ public class MainActivity extends BaseActivity
     private MainPresenter mMainPresenter ;
 
     LinearLayoutManager mLayoutManager ;
+
+    private View mPinHeaderView ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +57,36 @@ public class MainActivity extends BaseActivity
         mRecyclerView = (RecyclerView)findViewById(R.id.recycler_view) ;
         mRecyclerView.setAdapter(mMainAdapter);
         mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+            private final int pinHeight = DeviceUtil.dip2px(40) ;
+            private final int pinHeightPadding = DeviceUtil.dip2px(10) ;
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int firstVisiblePosition = mLayoutManager.findFirstVisibleItemPosition() ;
+                int first_complete_position = mLayoutManager.findFirstCompletelyVisibleItemPosition() ;
+                TimeUnit timeUnit = mMainAdapter.getItem(firstVisiblePosition) ;
+                ((TextView)mPinHeaderView.findViewById(R.id.datetime_view)).setText(TimeUtil.getDateString(timeUnit.getStartTime()));
+                TimeUnit FCP_timeUnit = mMainAdapter.getItem(first_complete_position) ;
+                if(FCP_timeUnit.isShowDateTime()){
+                    View FCP_view = mLayoutManager.findViewByPosition(first_complete_position) ;
+                    FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mPinHeaderView.getLayoutParams() ;
+                    if(FCP_view.getTop() - pinHeight < pinHeightPadding){
+                        // 把pin view往上推
+                        lp.topMargin = FCP_view.getTop() - pinHeight;
+                        mPinHeaderView.requestLayout();
+                    }
+                }else{
+                    FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mPinHeaderView.getLayoutParams() ;
+                    lp.topMargin = pinHeightPadding;
+                    mPinHeaderView.requestLayout();
+                }
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +96,8 @@ public class MainActivity extends BaseActivity
                         .start() ;
             }
         });
+
+        mPinHeaderView = findViewById(R.id.pinHeader) ;
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
