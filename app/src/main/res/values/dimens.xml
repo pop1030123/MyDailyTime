@@ -8,7 +8,7 @@
 
 
     <dimen name="button_paddingLR">15dp</dimen>
-    <dimen name="button_paddingTB">10dp</dimen>
+    <dimen name="button_paddingTB">8dp</dimen>
     <dimen name="dlg_padding">0dp</dimen>
     <dimen name="progress_bar_radius">10dp</dimen>
 

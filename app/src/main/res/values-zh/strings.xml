@@ -12,6 +12,10 @@
     <string name="dlg_warn_stop_task">你的工作正在进行中，是否需要停止？</string>
     <string name="confirm">确定</string>
     <string name="cancel">取消</string>
+    <string name="back">返回</string>
+
+    <string name="today">今天</string>
+    <string name="yesterday">昨天</string>
 
     <string name="q0">没有人不爱惜他的生命，但很少人珍视他的时间。</string>
     <string name="q1">从不浪费时间的人，没有工夫抱怨时间不够。</string>
@@ -23,6 +27,4 @@
     <string name="q7">莫等闲，白了少年头，空悲切。</string>
     <string name="q8">一年之计在于春，一日之计在于晨。</string>
     <string name="q9">少壮不努力，老大徒伤悲。</string>
-    <string name="today">今天</string>
-    <string name="yesterday">昨天</string>
 </resources>

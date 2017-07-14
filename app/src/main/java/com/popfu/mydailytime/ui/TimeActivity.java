@@ -89,11 +89,13 @@ public class TimeActivity extends Activity implements View.OnClickListener {
     @AfterViews
     void afterViews(){
 
+        TextView leftTitle =(TextView) findViewById(R.id.left_button) ;
         TextView centerTitle =(TextView) findViewById(R.id.center_button) ;
         TextView rightTitle =(TextView) findViewById(R.id.right_button) ;
         mStartView.setOnClickListener(this);
         mStopView.setOnClickListener(this);
         mResumeView.setOnClickListener(this);
+        leftTitle.setOnClickListener(this);
         rightTitle.setOnClickListener(this);
 
         mQuoteView.setText(mQuotesString);
@@ -122,7 +124,7 @@ public class TimeActivity extends Activity implements View.OnClickListener {
             case TYPE_STOP:
                 if(isNewUnit){
                     PopAnimation.init().view(mStartView)
-                            .duration(200)
+                            .duration(100)
                             .scale(1,0)
                             .interpolator(new AccelerateInterpolator())
                             .showAfterAnim(false)
@@ -134,7 +136,7 @@ public class TimeActivity extends Activity implements View.OnClickListener {
                             .start();
                 }else{
                     PopAnimation.init().view(mResumeView)
-                            .duration(200)
+                            .duration(100)
                             .scale(1,0)
                             .interpolator(new AccelerateInterpolator())
                             .showAfterAnim(false)
@@ -187,11 +189,16 @@ public class TimeActivity extends Activity implements View.OnClickListener {
                 showView(TYPE_STOP);
                 break ;
             case R.id.right_button:
+                isRunning = false ;
+                mClockView.stopTime();
                 // delete time unit
                 mPresenter.deleteUnit(mTimeUnit.getId()) ;
                 EventBus.getDefault().post(new EventDeleteUnit(mTimeUnit));
                 // 关闭页面，返回首页
                 finish();
+                break ;
+            case R.id.left_button:
+                handleBack() ;
                 break ;
         }
     }
@@ -246,6 +253,10 @@ public class TimeActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
+        handleBack() ;
+    }
+
+    private void handleBack(){
         // 处理返回按钮
         if(isRunning){
             final DLGCancelTask dlg = new DLGCancelTask(this) ;

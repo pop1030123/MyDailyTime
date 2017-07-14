@@ -16,8 +16,13 @@
             android:id="@+id/left_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_bg_light"
             android:gravity="center"
-            android:padding="@dimen/button_paddingLR"
+            android:paddingLeft="@dimen/button_paddingLR"
+            android:paddingRight="@dimen/button_paddingLR"
+            android:paddingTop="@dimen/button_paddingTB"
+            android:paddingBottom="@dimen/button_paddingTB"
+            android:text="@string/back"
             android:textColor="@color/text_color_light"/>
     </LinearLayout>
 

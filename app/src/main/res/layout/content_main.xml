@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@color/main_color_normal"
+        android:background="@color/c_white"
         >
         <TextView
             android:id="@+id/datetime_view"
@@ -30,6 +30,7 @@
             android:layout_height="40dp"
             android:gravity="center"
             android:textColor="@color/c_white"
+            android:background="@drawable/pin_header"
             android:text="1999/2/4"/>
     </LinearLayout>
 

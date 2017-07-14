@@ -9,10 +9,13 @@
     <string name="stop">Stop</string>
     <string name="start">Start</string>
     <string name="dlg_input_title">Input a title</string>
-    <string name="dlg_warn_stop_task">你的工作正在进行中，是否需要停止？</string>
+    <string name="dlg_warn_stop_task">Do you want to stop your work？</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
+    <string name="back">Back</string>
 
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
 
     <string name="q0">Never put off till tomorrow what may be done today.</string>
     <string name="q1">Procrastination is the thief of time. </string>
@@ -24,6 +27,4 @@
     <string name="q7">Time and tide wait for no man.</string>
     <string name="q8">Time is money.</string>
     <string name="q9">A day is a miniature of eternity. </string>
-    <string name="today">Today</string>
-    <string name="yesterday">Yesterday</string>
 </resources>
