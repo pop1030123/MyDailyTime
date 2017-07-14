@@ -1,5 +1,6 @@
 package com.popfu.mydailytime.ui;
 
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
@@ -190,10 +191,12 @@ public class MainActivity extends BaseActivity
     public void onEvent(EventAddUnit eventAddUnit){
         mMainAdapter.addItem(eventAddUnit.getUnit());
         notifyDataSetChanged();
+        animateUpdateUnit(eventAddUnit.getUnit()) ;
     }
     public void onEvent(EventUpdateUnit eventUpdateUnit){
         mMainAdapter.updateItem(eventUpdateUnit.getUnit());
         notifyDataSetChanged();
+        animateUpdateUnit(eventUpdateUnit.getUnit()) ;
     }
     public void onEvent(EventDeleteUnit eventDeleteUnit){
         mMainAdapter.deleteItem(eventDeleteUnit.getUnit());
@@ -205,5 +208,31 @@ public class MainActivity extends BaseActivity
         mMainAdapter.setMaxMillis(maxMillis);
         mMainAdapter.resortDataSet();
         mMainAdapter.notifyDataSetChanged();
+    }
+
+    private void animateUpdateUnit(final TimeUnit unit){
+        final long duration = unit.getDuration() ;
+        // 动画展示当前进度条
+        ValueAnimator mAnimator = ValueAnimator.ofFloat(0 ,1) ;
+        mAnimator.setDuration(1000) ;
+        mAnimator.setRepeatCount(0);
+        mAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float rate = Float.parseFloat(animation.getAnimatedValue().toString()) ;
+                final long tempDuration = (long)(rate * duration) ;
+                if(unit.getDuration() != tempDuration){
+                    mRecyclerView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            unit.setDuration(tempDuration);
+                            L.d("animateUpdateUnit:"+unit.getDuration());
+                            mMainAdapter.animateItem(unit);
+                        }
+                    }) ;
+                }
+            }
+        });
+        mAnimator.start();
     }
 }

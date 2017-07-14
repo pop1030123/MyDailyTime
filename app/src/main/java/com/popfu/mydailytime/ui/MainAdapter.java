@@ -131,6 +131,15 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ItemHolder> {
         }
     }
 
+    public void animateItem(TimeUnit updateUnit) {
+        int index = getIndex(updateUnit);
+        if (index != -1) {
+            mTimeUnitList.remove(index);
+            mTimeUnitList.add(index, updateUnit);
+            notifyItemChanged(index);
+        }
+    }
+
     public void deleteItem(TimeUnit deleteUnit) {
         int index = getIndex(deleteUnit);
         L.d("deleteItem:index:"+index+"::"+deleteUnit);
