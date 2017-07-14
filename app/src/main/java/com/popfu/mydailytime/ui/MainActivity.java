@@ -72,18 +72,32 @@ public class MainActivity extends BaseActivity
                 TimeUnit timeUnit = mMainAdapter.getItem(firstVisiblePosition) ;
                 ((TextView)mPinHeaderView.findViewById(R.id.datetime_view)).setText(TimeUtil.getDateString(timeUnit.getStartTime()));
                 TimeUnit FCP_timeUnit = mMainAdapter.getItem(first_complete_position) ;
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) mPinHeaderView.getLayoutParams() ;
                 if(FCP_timeUnit.isShowDateTime()){
                     View FCP_view = mLayoutManager.findViewByPosition(first_complete_position) ;
-                    FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mPinHeaderView.getLayoutParams() ;
-                    if(FCP_view.getTop() - pinHeight < pinHeightPadding){
-                        // 把pin view往上推
-                        lp.topMargin = FCP_view.getTop() - pinHeight;
-                        mPinHeaderView.requestLayout();
+                    if(timeUnit.isShowDateTime()){
+                        if(FCP_view.getTop() < (pinHeight+pinHeightPadding)){
+                            // 把pin view往上推
+                            layoutParams.topMargin = FCP_view.getTop() - pinHeight;
+                            mPinHeaderView.requestLayout();
+                        }else{
+                            if(layoutParams.topMargin != pinHeightPadding) {
+                                layoutParams.topMargin = pinHeightPadding;
+                                mPinHeaderView.requestLayout();
+                            }
+                        }
+                    }else{
+                        if(FCP_view.getTop() - pinHeight < pinHeightPadding){
+                            // 把pin view往上推
+                            layoutParams.topMargin = FCP_view.getTop() - pinHeight;
+                            mPinHeaderView.requestLayout();
+                        }
                     }
                 }else{
-                    FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mPinHeaderView.getLayoutParams() ;
-                    lp.topMargin = pinHeightPadding;
-                    mPinHeaderView.requestLayout();
+                    if(layoutParams.topMargin != pinHeightPadding){
+                        layoutParams.topMargin = pinHeightPadding;
+                        mPinHeaderView.requestLayout();
+                    }
                 }
             }
         });
