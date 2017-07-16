@@ -61,7 +61,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ItemHolder> {
         String lastDateStr = null ;
         for(TimeUnit unit : mTimeUnitList){
             String unitDate = formatter.format(unit.getStartTime()) ;
-            L.d("unitDate:"+unitDate);
             if(unitDate.equals(lastDateStr)){
                 unit.setShowDateTime(false);
             }else{

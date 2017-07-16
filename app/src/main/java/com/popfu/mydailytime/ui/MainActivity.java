@@ -226,7 +226,6 @@ public class MainActivity extends BaseActivity
                         @Override
                         public void run() {
                             unit.setDuration(tempDuration);
-                            L.d("animateUpdateUnit:"+unit.getDuration());
                             mMainAdapter.animateItem(unit);
                         }
                     }) ;
